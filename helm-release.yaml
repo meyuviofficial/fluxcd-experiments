@@ -17,7 +17,7 @@ spec:
     - kustomize:
         patches:
           - patch: |
-              - op: replace
+              - op: add
                 path: /metadata/labels
                 value:
                   gwcp.guidewire.com/app-name: kubevela-core

@@ -13,6 +13,22 @@ spec:
         kind: HelmRepository
         name: aws-efs-csi-driver
         namespace: flux-system
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |
+              - op: replace
+                path: /metadata/labels
+                value:
+                  gwcp.guidewire.com/app-name: kubevela-core
+                  gwcp.guidewire.com/version: "1.10.3"
+                  gwcp.guidewire.com/created-by: pod-ajanta
+                  gwcp.guidewire.com/maintained-by: pod-ajanta
+                  gwcp.guidewire.com/tenant-name: tenant-shared
+                  gwcp.guidewire.com/dept: "275"
+                  change-by: ajanta
+            target:
+              kind: ".*"
   values:
     controller:
       serviceAccount:
